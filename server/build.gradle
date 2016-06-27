@@ -1,0 +1,82 @@
+buildscript {
+	ext {
+		springBootVersion = '1.3.5.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath 'org.springframework:springloaded:1.2.5.RELEASE'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot' 
+
+jar {
+	baseName = 'nosutil'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+task local << {
+	bootRun.systemProperty 'spring.profiles.active', 'local'
+}
+
+task dev << {
+	bootRun.systemProperty 'spring.profiles.active', 'dev'
+}
+
+task prod << {
+	bootRun.systemProperty 'spring.profiles.active', 'prod'
+}
+
+local.finalizedBy bootRun
+dev.finalizedBy bootRun
+prod.finalizedBy bootRun
+
+
+dependencies {
+	//SPRING
+	compile('org.springframework.boot:spring-boot-devtools')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-websocket')
+//	compile 'org.springframework.session:spring-session'
+	compile 'org.springframework.mobile:spring-mobile-device:1.1.4.RELEASE'
+	//UTIL
+	compile('org.projectlombok:lombok:1.16.8')
+	compile 'com.google.guava:guava:19.0'
+	compile 'commons-io:commons-io:2.4'
+	compile 'io.jsonwebtoken:jjwt:0.6.0'
+	compile group: 'commons-codec', name: 'commons-codec', version: '1.5'
+
+	//DATABASE
+	compile 'com.zaxxer:HikariCP:2.3.5'
+	runtime('mysql:mysql-connector-java')
+
+	//MAPPER
+	compile group: 'org.modelmapper', name: 'modelmapper', version: '0.7.5'
+	compile group: 'org.modelmapper.extensions', name: 'modelmapper-spring', version: '0.7.5'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile 'org.mockito:mockito-all:1.10.19'
+
+}
+
+
+eclipse {
+	classpath {
+		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+	}
+}

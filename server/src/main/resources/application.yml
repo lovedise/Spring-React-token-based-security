@@ -1,0 +1,57 @@
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+    database: mysql
+    show-sql: true
+  profiles:
+    active: local
+jwt:
+  header: X-AUTH-TOKEN
+  secret: mySecret
+  expiration: 604800
+# JACKSON
+---
+spring:
+  profiles: local
+
+namee:
+  nos:
+    jdbc:
+      driver: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+      url: 6NjwPdTAYuhHIXmWMws8vA==
+      port: 3306
+      dbname: NBSSi5LbnDZ67OrbtYpMbg==
+      username: eZt7ef605dJe5gBTFiEkRw==
+      password: nXVuaKAcvgqk1E2CevsqpA==
+---
+spring:
+  profiles: dev
+
+namee:
+  nos:
+    jdbc:
+      driver: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+      url: 6NjwPdTAYuhHIXmWMws8vA==
+      port: 3306
+      dbname: NBSSi5LbnDZ67OrbtYpMbg==
+      username: eZt7ef605dJe5gBTFiEkRw==
+      password: nXVuaKAcvgqk1E2CevsqpA==
+---
+spring:
+  profiles: prod
+
+namee:
+  nos:
+    jdbc:
+      driver: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+      url: 6NjwPdTAYuhHIXmWMws8vA==
+      port: 3306
+      dbname: NBSSi5LbnDZ67OrbtYpMbg==
+      username: eZt7ef605dJe5gBTFiEkRw==
+      password: nXVuaKAcvgqk1E2CevsqpA==
+

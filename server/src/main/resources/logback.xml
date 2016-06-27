@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="24 hours">
+<!-- milliseconds, seconds, minutes, hours 단위 적용가능 -->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-4relative [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+    </appender>
+
+	<!--<appender name="FILE_REQ_JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<file>logs/mars_req_logFile.log</file>-->
+		<!--&lt;!&ndash; 시간기준으로 설정 : 30일기준 이전파일 삭제&ndash;&gt;-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>logs/mars_req_logFile.%d{yyyyMMdd}.log</fileNamePattern>-->
+			<!--<maxHistory>30</maxHistory>-->
+		<!--</rollingPolicy>-->
+		<!--<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">-->
+			<!--<appendLineSeparator>true</appendLineSeparator>-->
+			<!--<includeLoggerName>false</includeLoggerName>-->
+			<!--<jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">-->
+				<!--&lt;!&ndash; prettyPrint is probably ok in dev, but usually not ideal in production: &ndash;&gt;-->
+				<!--<prettyPrint>false</prettyPrint>-->
+			<!--</jsonFormatter>-->
+			<!--<timestampFormat>yyyyMMddHHmmss</timestampFormat>-->
+		<!--</layout>-->
+	<!--</appender>-->
+
+	<!--<appender name="FILE_AOP_JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<file>logs/mars_aop_logFile.log</file>-->
+		<!--&lt;!&ndash; 시간기준으로 설정 : 30일기준 이전파일 삭제&ndash;&gt;-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>logs/mars_aop_logFile.%d{yyyyMMdd}.log</fileNamePattern>-->
+			<!--<maxHistory>30</maxHistory>-->
+		<!--</rollingPolicy>-->
+		<!--<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">-->
+			<!--<appendLineSeparator>true</appendLineSeparator>-->
+			<!--<includeLoggerName>false</includeLoggerName>-->
+			<!--<jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">-->
+				<!--&lt;!&ndash; prettyPrint is probably ok in dev, but usually not ideal in production: &ndash;&gt;-->
+				<!--<prettyPrint>false</prettyPrint>-->
+			<!--</jsonFormatter>-->
+			<!--<timestampFormat>yyyyMMddHHmmss</timestampFormat>-->
+		<!--</layout>-->
+	<!--</appender>-->
+
+	<!--<logger name="namee.mobileserver.core.spring.filter.SecurityTokenAuthenticationFilter" level="DEBUG" additivity="false">-->
+		<!--<appender-ref ref="STDOUT" />-->
+	<!--</logger>-->
+	<!--<logger name="namee.mobileserver.core.spring.filter.MarsRequestLogFilter" level="DEBUG" additivity="false">-->
+		<!--<appender-ref ref="STDOUT" />-->
+	<!--</logger>-->
+	<!--<logger name="namee.mobileserver.core.spring.aop" level="INFO">-->
+		<!--<appender-ref ref="STDOUT" />-->
+	<!--</logger>-->
+	<!--<logger name="namee.mobileserver.biz.web.support.util.SNSUtil" level="DEBUG">-->
+		<!--<appender-ref ref="STDOUT" />-->
+	<!--</logger>-->
+	<!--<logger name="namee.mobileserver.biz.web.support.util.SQSUtil" level="DEBUG">-->
+		<!--<appender-ref ref="STDOUT" />-->
+	<!--</logger>-->
+    <logger name="com.namee.api" level="DEBUG" />
+    <logger name="com.namee.core" level="DEBUG" />
+
+	<logger name="org.springframework.core" level="INFO"/>
+	<logger name="org.springframework.context" level="INFO"/>
+	<logger name="org.springframework.web" level="INFO"/>
+	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor" level="ERROR"/>
+	<logger name="com.zaxxer.hikari" level="ERROR" />
+	<logger name="org.apache.http" level="ERROR" />
+
+   	<logger name="jdbc.sqlonly" level="INFO">
+   		<appender-ref ref="STDOUT" />
+   	</logger>
+	<!-- SQL문과 해당 SQL을 실행시키는데 수행된 시간 정보(milliseconds)를 포함한다. -->
+  	<logger name="jdbc.sqltiming" level="INFO">
+  		<appender-ref ref="STDOUT" />
+   	</logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
